@@ -1,3 +1,4 @@
+// check it
 import './index.scss';
 
 const questions = [
