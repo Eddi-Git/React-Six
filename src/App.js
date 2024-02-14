@@ -8,6 +8,8 @@ import { Users } from './components/Users';
 function App() {
   const [users, setUsers] = React.useState([]);
   const [isLoading, setLoading] = React.useState(true);
+  const [searchValue, setSearchValue] = React.useState('');
+
 
 
   React.useEffect(() => {
@@ -19,12 +21,19 @@ function App() {
       console.warn(err);
       alert('Ошибка при получение данных');
     }).finally(() => setLoading(false));
-
   }, []);
 
+  const onChangeSearchValue = (event) => {
+    setSearchValue(event.target.value);
+  }
   return (
     <div className="App">
-      <Users items={users} isLoading={isLoading} />
+      <Users
+        onChangeSearchValue={onChangeSearchValue}
+        searchValue={searchValue}
+        items={users}
+        isLoading={isLoading}
+      />
       {/* <Success /> */}
     </div>
   );
