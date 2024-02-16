@@ -7,6 +7,7 @@ import { Users } from './components/Users';
 
 function App() {
   const [users, setUsers] = React.useState([]);
+  const [invites, setInvites] = React.useState([]);
   const [isLoading, setLoading] = React.useState(true);
   const [searchValue, setSearchValue] = React.useState('');
 
@@ -25,7 +26,16 @@ function App() {
 
   const onChangeSearchValue = (event) => {
     setSearchValue(event.target.value);
+  } 
+
+  const onClickInvite = (id) => {
+    if (invites.includes(id)) {
+      setInvites((prev) => prev.filter((_id) => _id != id));
+    } else {
+      setInvites( prev => [...prev, id]);
+    }
   }
+
   return (
     <div className="App">
       <Users
@@ -33,6 +43,8 @@ function App() {
         searchValue={searchValue}
         items={users}
         isLoading={isLoading}
+        invites={onClickInvite}
+        onClickInvite={onClickInvite}
       />
       {/* <Success /> */}
     </div>
