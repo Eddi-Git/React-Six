@@ -26,7 +26,7 @@ function App() {
 
   const onChangeSearchValue = (event) => {
     setSearchValue(event.target.value);
-  } 
+  }; 
 
   const onClickInvite = (id) => {
     if (invites.includes(id)) {
@@ -34,7 +34,7 @@ function App() {
     } else {
       setInvites( prev => [...prev, id]);
     }
-  }
+  };
 
   return (
     <div className="App">
@@ -43,7 +43,7 @@ function App() {
         searchValue={searchValue}
         items={users}
         isLoading={isLoading}
-        invites={onClickInvite}
+        invites={invites}
         onClickInvite={onClickInvite}
       />
       {/* <Success /> */}

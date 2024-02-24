@@ -26,29 +26,33 @@ export const Users = ({ items, isLoading, searchValue, onChangeSearchValue, invi
         </div>
       ) : (
         <ul className="users-list">
-          {items.filter(obj => {
-            const fullName = (obj.first_name + obj.last_name).toLowerCase();
+          {items
+            .filter((obj) => {
+              const fullName = (obj.first_name + obj.last_name).toLowerCase();
 
-            // if (fullName.includes(searchValue.toLowerCase()) || obj.email.toLowerCase().includes(searchValue.toLowerCase())){
-            //   return true;
-            // }
-            // return false;
-            // // другой варинт короче:
-            return (
-              fullName.includes(searchValue.toLowerCase()) ||
-              obj.email.toLowerCase().includes(searchValue.toLowerCase())
-            );
-          }).map((obj) => (
-            <User
-              key={obj.id}
-              // first_name={obj.first_name}
-              // last_name={obj.last_name}
-              // email={obj.email}
-              // avatar={obj.avatar}
-              // // сокращенный вариант если имена пропсов совпадают
-              {...obj}
-            />
-          ))}
+              // if (fullName.includes(searchValue.toLowerCase()) || obj.email.toLowerCase().includes(searchValue.toLowerCase())){
+              //   return true;
+              // }
+              // return false;
+              // // другой варинт короче:
+              return (
+                fullName.includes(searchValue.toLowerCase()) ||
+                obj.email.toLowerCase().includes(searchValue.toLowerCase())
+              );
+            })
+            .map((obj) => (
+              <User
+                isInvited={invites.includes(obj.id)}
+                key={obj.id}
+                {...obj}
+
+                // first_name={obj.first_name}
+                // last_name={obj.last_name}
+                // email={obj.email}
+                // avatar={obj.avatar}
+                // // сокращенный вариант если имена пропсов совпадают
+              />
+            ))}
         </ul>
       )}
       <button className="send-invite-btn">Отправить приглашение</button>
