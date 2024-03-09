@@ -1,6 +1,7 @@
 import React from 'react';
 // import { Skeleton } from '.Users/Skeleton';
 import { Skeleton } from './Skeleton';
+
 import { User } from './User';
 
 export const Users = ({ items, isLoading, searchValue, onChangeSearchValue, invites, onClickInvite, }) => {
@@ -42,6 +43,7 @@ export const Users = ({ items, isLoading, searchValue, onChangeSearchValue, invi
             })
             .map((obj) => (
               <User
+                onClickInvite={onClickInvite}
                 isInvited={invites.includes(obj.id)}
                 key={obj.id}
                 {...obj}

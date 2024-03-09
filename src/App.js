@@ -3,12 +3,14 @@ import './index.scss';
 import { Success } from './components/Success';
 import { Users } from './components/Users';
 
+
 // Тут список пользователей: https://reqres.in/api/users
 
 function App() {
   const [users, setUsers] = React.useState([]);
   const [invites, setInvites] = React.useState([]);
   const [isLoading, setLoading] = React.useState(true);
+  const [success, setSuccess] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState('');
 
 
@@ -38,6 +40,9 @@ function App() {
 
   return (
     <div className="App">
+      {
+        
+      }
       <Users
         onChangeSearchValue={onChangeSearchValue}
         searchValue={searchValue}
