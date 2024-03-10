@@ -13,8 +13,6 @@ function App() {
   const [success, setSuccess] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState('');
 
-
-
   React.useEffect(() => {
     fetch('https://reqres.in/api/users')
     .then(res => res.json())
@@ -32,26 +30,31 @@ function App() {
 
   const onClickInvite = (id) => {
     if (invites.includes(id)) {
-      setInvites((prev) => prev.filter((_id) => _id != id));
+      setInvites((prev) => prev.filter((_id) => _id !== id));
     } else {
       setInvites( prev => [...prev, id]);
     }
   };
 
+const onClickSendInvites = () => {
+  setSuccess(true);
+}
+
   return (
     <div className="App">
-      {
-        
-      }
-      <Users
-        onChangeSearchValue={onChangeSearchValue}
-        searchValue={searchValue}
-        items={users}
-        isLoading={isLoading}
-        invites={invites}
-        onClickInvite={onClickInvite}
-      />
-      {/* <Success /> */}
+      {success ? (
+        <Success count={invites.length} />
+      ) : (
+        <Users
+          onChangeSearchValue={onChangeSearchValue}
+          searchValue={searchValue}
+          items={users}
+          isLoading={isLoading}
+          invites={invites}
+          onClickInvite={onClickInvite}
+          onClickSendInvites={onClickSendInvites}
+        />
+      )}
     </div>
   );
 }
